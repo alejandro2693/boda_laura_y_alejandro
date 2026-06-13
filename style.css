@@ -14,7 +14,7 @@
     
     /* Typography */
     --font-heading: 'Mistrully', 'Great Vibes', 'Pinyon Script', cursive;
-    --font-serif: 'Eyesome Script', 'Playfair Display', serif;
+    --font-serif: 'Playfair Display', serif; /* Eyesome Script not hosted; Playfair Display used as fallback */
     --font-sans: 'Questrial', sans-serif;
     
     /* Shadows & Transitions */
@@ -40,15 +40,7 @@
     font-display: swap;
 }
 
-@font-face {
-    font-family: 'Eyesome Script';
-    src: url('EyesomeScript.woff2') format('woff2'),
-         url('EyesomeScript.woff') format('woff'),
-         url('EyesomeScript.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
+/* Eyesome Script: using Playfair Display italic as hosted fallback */
 
 /* ==========================================================================
    RESET & BASE STYLES
@@ -67,13 +59,23 @@ html {
 body {
     font-family: var(--font-sans);
     color: var(--color-text-dark);
-    background-image: url('FONDO WEB.svg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
     overflow-x: hidden;
     line-height: 1.6;
+    background-color: var(--color-bg-light);
+    /* Background fixed via ::before pseudoelement for iOS Safari compatibility */
+}
+
+/* iOS Safari does not support background-attachment: fixed on body.
+   The ::before trick creates a fixed full-screen layer that stays put. */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-image: url('fondo-web.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-color: var(--color-bg-light);
 }
 
@@ -96,13 +98,13 @@ body {
 .border-left {
     left: 50%;
     margin-left: -530px; /* Moved inward to overlap text container */
-    background-image: url('Lateral WEB DERECHA.svg'); /* Swapped: Right SVG used on the Left */
+    background-image: url('lateral-derecha.svg'); /* Swapped: Right SVG used on the Left */
 }
 
 .border-right {
     left: 50%;
     margin-left: 150px; /* Moved inward to overlap text container */
-    background-image: url('Lateral WEB IZQUIERDA.svg'); /* Swapped: Left SVG used on the Right */
+    background-image: url('lateral-izquierda.svg'); /* Swapped: Left SVG used on the Right */
 }
 
 /* ==========================================================================
@@ -305,11 +307,9 @@ body {
 }
 
 .section-title {
-    font-family: 'Byliner Script', cursive;
+    font-family: 'Dancing Script', cursive;
     font-size: 3.5rem;
-    font-weight: bold;
-    
-    
+    font-weight: 700;
     color: var(--color-primary);
     margin-bottom: 1.5rem;
 }
@@ -331,6 +331,10 @@ body {
 .font-serif {
     font-family: var(--font-serif);
     font-style: italic;
+}
+
+.font-mistrully {
+    font-family: 'Mistrully', 'Great Vibes', 'Pinyon Script', cursive;
 }
 
 /* ==========================================================================
@@ -803,3 +807,32 @@ body {
     }
 }
 
+/* ==========================================================================
+   iOS SAFARI SPECIFIC FIXES
+   ========================================================================== */
+
+/* Fix for iOS Safari: position:fixed can behave oddly with SVG backgrounds.
+   We use -webkit-transform to force GPU compositing on fixed elements. */
+@supports (-webkit-touch-callout: none) {
+    /* iOS device detected */
+    body::before {
+        /* On older iOS, 'inset' may not be supported, use explicit positioning */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        /* Force GPU layer for smooth rendering */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+
+    .border-decor {
+        /* Force GPU compositing for SVG fixed elements on iOS */
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        /* Use will-change to prevent scroll jank */
+        will-change: transform;
+    }
+}
