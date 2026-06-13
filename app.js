@@ -96,4 +96,20 @@ document.addEventListener("DOMContentLoaded", () => {
     fadeElements.forEach(element => {
         appearOnScroll.observe(element);
     });
+
+    // ==========================================================================
+    // 4. SCROLL STATE FOR DECORATIONS
+    // ==========================================================================
+    const handleScroll = () => {
+        if (window.scrollY > 50) {
+            document.body.classList.add('scrolled');
+        } else {
+            document.body.classList.remove('scrolled');
+        }
+    };
+    
+    // Initial check and event listener
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
 });

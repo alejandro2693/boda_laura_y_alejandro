@@ -3,20 +3,29 @@
    ========================================================================== */
 :root {
     /* Color Palette */
-    --color-primary: #3f4a2c;       /* Dark Olive Green */
-    --color-secondary: #709076;     /* Sage Green */
-    --color-accent: #7d6b52;        /* Warm Gold/Earth */
-    --color-bg-light: #fcfbfa;      /* Off-white warm background */
-    --color-bg-card: rgba(252, 251, 250, 0.9); /* Glassmorphism card fill */
-    --color-text-dark: #2c3420;     /* Deep dark charcoal olive for readability */
-    --color-text-muted: #5e6851;    /* Olive gray */
-    --color-border: rgba(125, 107, 82, 0.2); /* Soft gold border */
-    
+    --color-primary: #3f4a2c;
+    /* Dark Olive Green */
+    --color-secondary: #709076;
+    /* Sage Green */
+    --color-accent: #7d6b52;
+    /* Warm Gold/Earth */
+    --color-bg-light: #fcfbfa;
+    /* Off-white warm background */
+    --color-bg-card: rgba(252, 251, 250, 0.9);
+    /* Glassmorphism card fill */
+    --color-text-dark: #2c3420;
+    /* Deep dark charcoal olive for readability */
+    --color-text-muted: #5e6851;
+    /* Olive gray */
+    --color-border: rgba(125, 107, 82, 0.2);
+    /* Soft gold border */
+
     /* Typography */
     --font-heading: 'Mistrully', 'Great Vibes', 'Pinyon Script', cursive;
-    --font-serif: 'Playfair Display', serif; /* Eyesome Script not hosted; Playfair Display used as fallback */
+    --font-serif: 'Playfair Display', serif;
+    /* Eyesome Script not hosted; Playfair Display used as fallback */
     --font-sans: 'Questrial', sans-serif;
-    
+
     /* Shadows & Transitions */
     --shadow-premium: 0 20px 40px rgba(44, 52, 32, 0.08);
     --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -86,25 +95,49 @@ body::before {
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 380px; /* Much larger leaf decorations */
-    z-index: 20;  /* Higher z-index so text scrolls behind the leaves */
+    width: 380px;
+    z-index: 500;
     pointer-events: none;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    transition: var(--transition-smooth);
+    /* Transición súper suave para el efecto de escala al deslizar */
+    transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.2s ease;
+    will-change: transform;
+}
+
+/* ESTADO INICIAL (ARRIBA): 100% más grande (escala x2) */
+body:not(.scrolled) .border-left {
+    transform: scale(2) translateZ(0);
+    transform-origin: left center;
+}
+
+body:not(.scrolled) .border-right {
+    transform: scale(2) translateZ(0);
+    transform-origin: right center;
+}
+
+/* ESTADO AL DESLIZAR: Tamaño normal (escala x1) */
+body.scrolled .border-left {
+    transform: scale(1) translateZ(0);
+    transform-origin: left center;
+}
+
+body.scrolled .border-right {
+    transform: scale(1) translateZ(0);
+    transform-origin: right center;
 }
 
 .border-left {
     left: 50%;
-    margin-left: -530px; /* Moved inward to overlap text container */
-    background-image: url('lateral-derecha.svg'); /* Swapped: Right SVG used on the Left */
+    margin-left: -530px;
+    background-image: url('lateral-derecha.svg');
 }
 
 .border-right {
-    left: 50%;
-    margin-left: 150px; /* Moved inward to overlap text container */
-    background-image: url('lateral-izquierda.svg'); /* Swapped: Left SVG used on the Right */
+    right: 50%;
+    margin-right: -530px;
+    background-image: url('lateral-izquierda.svg');
 }
 
 /* ==========================================================================
@@ -137,7 +170,8 @@ body::before {
 }
 
 .hero-content {
-    background-color: transparent; /* No background card for the hero, text floats directly on background */
+    background-color: transparent;
+    /* No background card for the hero, text floats directly on background */
     padding: 3rem 1rem;
     max-width: 650px;
     width: 100%;
@@ -149,7 +183,7 @@ body::before {
 
 .pre-title {
     font-family: var(--font-sans);
-    
+
     letter-spacing: 4px;
     color: var(--color-accent);
     font-size: 0.95rem;
@@ -161,23 +195,29 @@ body::before {
     flex-direction: column;
     align-items: center;
     line-height: 1.1;
-    margin-bottom: 2rem;
+    margin-bottom: 0.5rem;
 }
 
 .couple-names .name {
-    font-family: var(--font-heading); /* Mistrully script font */
+    font-family: var(--font-heading);
+    /* Mistrully script font */
     font-size: 5rem;
     font-weight: normal;
-    color: var(--color-primary); /* Dark olive green */
+    color: var(--color-primary);
+    /* Dark olive green */
 }
 
 .couple-names .ampersand {
-    font-family: var(--font-sans); /* Questrial font */
-    font-size: 1.8rem;
+    font-family: var(--font-heading);
+    /* Mistrully script font */
+    font-size: 3rem;
     font-weight: normal;
     font-style: normal;
-    color: var(--color-secondary); /* Sage green */
-    margin: 0.2rem 0;
+    color: var(--color-secondary);
+    margin: 0.5rem 0;
+    /* Esto hace que los nombres se junten y se superpongan */
+    position: relative;
+    z-index: 2;
 }
 
 .separator {
@@ -234,7 +274,7 @@ body::before {
     padding: 0.8rem 0.5rem;
     border-radius: 12px;
     border: 1px solid rgba(125, 107, 82, 0.15);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
 }
 
 .time-val {
@@ -247,7 +287,7 @@ body::before {
 .time-label {
     font-family: var(--font-sans);
     font-size: 0.75rem;
-    
+
     letter-spacing: 1px;
     color: var(--color-text-muted);
     margin-top: 0.2rem;
@@ -269,7 +309,7 @@ body::before {
 
 .scroll-indicator .scroll-text {
     font-size: 0.75rem;
-    
+
     letter-spacing: 2px;
     color: var(--color-text-muted);
     margin-top: 0.3rem;
@@ -291,7 +331,8 @@ body::before {
 
 /* Cards Design */
 .card-section {
-    background-color: transparent; /* Seamless clean design matching the invite paper */
+    background-color: transparent;
+    /* Seamless clean design matching the invite paper */
     border-radius: 0;
     padding: 2.5rem 1rem;
     border: none;
@@ -397,7 +438,7 @@ body::before {
 .menu-item-title {
     font-family: var(--font-sans);
     font-weight: bold;
-    
+
     font-size: 0.85rem;
     letter-spacing: 2px;
     color: var(--color-secondary);
@@ -477,7 +518,7 @@ body::before {
     overflow: hidden;
     border: 1px solid var(--color-border);
     margin-bottom: 2rem;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
 }
 
 .btn-map {
@@ -503,12 +544,12 @@ body::before {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.01);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
 }
 
 .iban-title {
     font-family: var(--font-sans);
-    
+
     font-size: 0.8rem;
     letter-spacing: 2px;
     color: var(--color-text-muted);
@@ -524,17 +565,21 @@ body::before {
 }
 
 .btn-copy {
-    background-color: transparent;
-    border: 1px solid var(--color-accent);
-    color: var(--color-accent);
-    padding: 0.7rem 2rem;
-    font-size: 0.9rem;
+    background-color: var(--color-primary);
+    border: none;
+    color: white;
+    padding: 0.8rem 2.5rem;
+    font-size: 0.95rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: var(--transition-smooth);
 }
 
 .btn-copy:hover {
-    background-color: var(--color-accent);
-    color: white;
+    background-color: var(--color-secondary);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
 }
 
 .btn-copy.copied {
@@ -574,7 +619,7 @@ body::before {
     padding: 0.9rem 2.5rem;
     font-family: var(--font-sans);
     font-weight: 500;
-    
+
     letter-spacing: 2px;
     text-decoration: none;
     cursor: pointer;
@@ -617,7 +662,7 @@ body::before {
 .footer-credit {
     font-family: var(--font-sans);
     font-size: 0.75rem;
-    
+
     letter-spacing: 2px;
     color: var(--color-text-muted);
 }
@@ -641,6 +686,7 @@ body::before {
         opacity: 0;
         transform: translateY(40px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -648,12 +694,19 @@ body::before {
 }
 
 @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
         transform: translateY(0);
     }
+
     40% {
         transform: translateY(-10px);
     }
+
     60% {
         transform: translateY(-5px);
     }
@@ -671,16 +724,18 @@ body::before {
         width: 25vw;
         max-width: 280px;
     }
-    
+
     .border-right {
         left: auto;
         right: 0;
         margin-left: 0;
+        margin-right: 0; /* Reset margin-right to prevent pushing off-screen */
         width: 25vw;
         max-width: 280px;
     }
 
-    .content-container, .hero-content {
+    .content-container,
+    .hero-content {
         padding-left: 18vw;
         padding-right: 18vw;
     }
@@ -692,7 +747,7 @@ body::before {
         width: 26vw;
         max-width: 240px;
     }
-    
+
     .content-container {
         max-width: 100%;
     }
@@ -703,10 +758,12 @@ body::before {
     .border-decor {
         width: 28vw;
         max-width: 180px;
-        opacity: 0.95; /* Keep leaves fully visible and rich */
+        opacity: 0.95;
+        /* Keep leaves fully visible and rich */
     }
-    
-    .content-container, .hero-content {
+
+    .content-container,
+    .hero-content {
         padding-left: 20vw;
         padding-right: 20vw;
     }
@@ -714,23 +771,24 @@ body::before {
     .couple-names .name {
         font-size: 3.5rem;
     }
+
     .couple-names .ampersand {
         font-size: 2rem;
         margin: 0.3rem 0;
     }
-    
+
     .wedding-date {
         font-size: 1.6rem;
     }
-    
+
     .wedding-venue {
         font-size: 1.15rem;
     }
-    
+
     .card-section {
         padding: 2rem 0.5rem;
     }
-    
+
     .section-title {
         font-size: 2.2rem;
     }
@@ -738,6 +796,7 @@ body::before {
 
 /* Small Mobile view (max-width: 480px) */
 @media (max-width: 480px) {
+
     /* Keep borders visible and large on small mobile screens */
     .border-decor {
         display: block;
@@ -745,62 +804,65 @@ body::before {
         max-width: 120px;
         opacity: 0.95;
     }
-    
-    .content-container, .hero-content {
+
+    .content-container,
+    .hero-content {
         padding-left: 24vw;
         padding-right: 24vw;
     }
-    
+
     .couple-names .name {
         font-size: 2.5rem;
     }
+
     .couple-names .ampersand {
         font-size: 1.6rem;
         margin: 0.2rem 0;
     }
-    
+
     .countdown {
         gap: 0.4rem;
-        flex-wrap: wrap; /* Ensure blocks stack if needed on very small devices */
+        flex-wrap: wrap;
+        /* Ensure blocks stack if needed on very small devices */
     }
-    
+
     .time-block {
         min-width: 50px;
         padding: 0.5rem 0.2rem;
     }
-    
+
     .time-val {
         font-size: 1.2rem;
     }
-    
+
     .time-label {
         font-size: 0.6rem;
     }
-    
+
     .content-container {
         padding: 0 0.5rem 3rem;
         gap: 2rem;
     }
-    
+
     .card-section {
         padding: 1.5rem 0.2rem;
     }
-    
+
     .section-title {
         font-size: 1.8rem;
     }
-    
+
     .iban-value {
         font-size: 1rem;
     }
-    
+
     .btn {
         width: 100%;
         padding: 0.9rem 1rem;
         font-size: 0.8rem;
         letter-spacing: 1px;
     }
-    
+
     .btn-rsvp {
         padding: 1rem 1rem;
         font-size: 0.9rem;
@@ -814,15 +876,16 @@ body::before {
 /* Fix for iOS Safari: position:fixed can behave oddly with SVG backgrounds.
    We use -webkit-transform to force GPU compositing on fixed elements. */
 @supports (-webkit-touch-callout: none) {
+
     /* iOS device detected */
     body::before {
-        /* On older iOS, 'inset' may not be supported, use explicit positioning */
+        /* On iOS, % height can fail. Use vh/vw for fixed backgrounds */
         top: 0;
         left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
+        /* Use dynamic viewport height (dvh) for newer iOS versions */
+        height: 100dvh;
         /* Force GPU layer for smooth rendering */
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
