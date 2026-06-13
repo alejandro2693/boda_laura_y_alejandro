@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación de Boda - Laura & Alejandro</title>
+    <!-- Google Fonts: Questrial, Pinyon Script, Great Vibes, Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Questrial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Bordes decorativos laterales (Fijos en escritorio, adaptados en móvil) -->
+    <div class="border-decor border-left"></div>
+    <div class="border-decor border-right"></div>
+
+    <div class="main-wrapper">
+        <!-- SECCIÓN 1: HERO -->
+        <header class="section-hero">
+            <div class="hero-content fade-in">
+                <p class="pre-title">¡Nos casamos!</p>
+                <h1 class="couple-names">
+                    <span class="name">Laura</span>
+                    <span class="ampersand">y</span>
+                    <span class="name">Alejandro</span>
+                </h1>
+                <div class="separator">
+                    <span class="dot"></span>
+                    <span class="line"></span>
+                    <span class="dot"></span>
+                </div>
+                <p class="wedding-date">19 . 09 . 2026</p>
+                <p class="wedding-venue">Finca El Maipez, Gran Canaria</p>
+                
+                <!-- Cuenta atrás -->
+                <div class="countdown" id="countdown">
+                    <div class="time-block">
+                        <span class="time-val" id="days">00</span>
+                        <span class="time-label">Días</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-val" id="hours">00</span>
+                        <span class="time-label">Horas</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-val" id="minutes">00</span>
+                        <span class="time-label">Mins</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-val" id="seconds">00</span>
+                        <span class="time-label">Segs</span>
+                    </div>
+                </div>
+
+                <div class="scroll-indicator">
+                    <span class="arrow">&#8595;</span>
+                    <span class="scroll-text">Desliza para ver más</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- CONTENEDOR CENTRAL DE SECCIONES -->
+        <main class="content-container">
+
+            <!-- SECCIÓN 2: BIENVENIDA -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title">Nuestra Historia</h2>
+                    <p class="welcome-text font-serif">
+                        Hay momentos en la vida que son únicos, pero compartirlos con las personas que más queremos los hace inolvidables. Queremos dar el "sí, quiero" rodeados de nuestra familia y amigos, y nos haría muy felices contar con tu presencia en este gran día.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: EL MENÚ -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title">El Menú</h2>
+                    <p class="section-intro">Un banquete pensado para celebrar el amor y disfrutar con los cinco sentidos.</p>
+                    
+                    <div class="menu-details">
+                        <div class="menu-category">
+                            <h3>Cóctel de Bienvenida</h3>
+                            <ul class="menu-list">
+                                <li>Tabla de quesos canarios con frutos secos</li>
+                                <li>Chupito de salmorejo</li>
+                                <li>Saquitos de langostino y pesto</li>
+                                <li>Won ton de pato con verdura agridulce y salsa de soja</li>
+                                <li>Brocheta de pulpo frito con esfera de papa y mojo verde</li>
+                                <li>Mini fajitas de pollo con verduras y guacamole</li>
+                                <li>Ensartado de langostino crujiente con salsa agridulce</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Primer Plato</h3>
+                            <p class="menu-item-desc">Hojaldre relleno de setas cremosas pintado con mousse de queso y crocante de almendras</p>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Sorbete</h3>
+                            <p class="menu-item-desc">Sorbete de limón al cava</p>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Plato Principal</h3>
+                            <p class="menu-choice-title">A elegir entre:</p>
+                            <div class="menu-choice">
+                                <p class="menu-item-title">Pescado</p>
+                                <p class="menu-item-desc">Lomo de lubina acompañado de papas arrugadas y saquito de verdura con mojo verde</p>
+                            </div>
+                            <div class="menu-choice">
+                                <p class="menu-item-title">Carne</p>
+                                <p class="menu-item-desc">Solomillo de cerdo acompañado de papas crema y saquito de verduras con salsa de Pedro Ximénez</p>
+                            </div>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Postre</h3>
+                            <p class="menu-item-desc">Esfera crujiente de chocolate blanco rellena de crema de maracuyá sobre una cama de galleta con frutos rojos</p>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Bodega</h3>
+                            <ul class="menu-list menu-drinks">
+                                <li>Vino blanco Nuviana</li>
+                                <li>Vino tinto Valsotillo 2023 (Ribera del Duero)</li>
+                                <li>Cerveza Estrella Galicia</li>
+                                <li>Cóctel San Francisco</li>
+                                <li>Refrescos y Agua Mineral</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="menu-note">
+                        <p><em>* Si tienes alguna intolerancia, alergia o sigues una dieta especial (vegano, vegetariano, celíaco, infantil, etc.), por favor indícalo en el formulario de confirmación.</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: SPOTIFY -->
+            <section class="section card-section fade-in">
+                <div class="card-content spotify-card">
+                    <div class="spotify-icon">🎵</div>
+                    <h2 class="section-title">¿Qué canción no puede faltar?</h2>
+                    <p class="welcome-text">
+                        Queremos que la fiesta sea inolvidable y que todos bailen hasta el amanecer. Ayúdanos a crear la banda sonora de nuestra boda añadiendo tus canciones favoritas a nuestra lista compartida de Spotify.
+                    </p>
+                    <a href="https://open.spotify.com/playlist/0MaY3XZZlpW8AfvV7mihCp?si=11506fac0e624a0b&pt=5816b115090b42e83b3c65920c300c6f" target="_blank" class="btn btn-spotify" rel="noopener noreferrer">
+                        <span>Agregar canciones a Spotify</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5: UBICACIÓN Y MAPA -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title">Ubicación</h2>
+                    <div class="venue-logo-container">
+                        <!-- Logo de Maipez -->
+                        <img src="LOGO MAIPEZ WEB MK2.png" alt="Logo Hotel Rural LIVVO Maipez" class="venue-logo">
+                    </div>
+                    <p class="venue-details">
+                        Tanto la ceremonia como la celebración tendrán lugar en la hermosa <strong>Finca El Maipez</strong> (Hotel Rural LIVVO Maipez).
+                    </p>
+                    <p class="address">
+                        📍 Ctra. de La Calzada, 104, 35017 Las Palmas de Gran Canaria
+                    </p>
+                    
+                    <div class="map-container">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=28.05836913674236,-15.473613835663382&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                            width="100%" 
+                            height="350" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <a href="https://www.google.com/maps/search/?api=1&query=28.05836913674236,-15.473613835663382" target="_blank" class="btn btn-map" rel="noopener noreferrer">
+                        <span>Cómo llegar (Google Maps)</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 6: LISTA DE BODAS (REGALOS) -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title">El mejor regalo es tu presencia</h2>
+                    <p class="welcome-text">
+                        Pero si deseas ayudarnos en nuestro viaje, puedes hacerlo a través de la siguiente cuenta bancaria:
+                    </p>
+                    
+                    <div class="iban-card">
+                        <p class="iban-title">Número de Cuenta (IBAN)</p>
+                        <p class="iban-value" id="iban-value">ES61 0182 6130 5602 0160 1064</p>
+                        <button class="btn btn-copy" id="btn-copy-iban">
+                            <span id="copy-text">Copiar IBAN</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 7: RSVP (CONFIRMACIÓN) -->
+            <section class="section card-section fade-in">
+                <div class="card-content rsvp-card">
+                    <h2 class="section-title">Confirmar Asistencia</h2>
+                    <p class="welcome-text">
+                        Para ayudarnos a organizar los detalles con el catering y transporte, por favor, confírmanos tu asistencia completando el formulario a continuación.
+                    </p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5Ju69RdzbZ7xg1UhukKceO0EqPA0Xv-B7-Z6JG9Dk8FJWWw/viewform?usp=publish-editor" target="_blank" class="btn btn-rsvp" rel="noopener noreferrer">
+                        <span>Abrir Formulario de Confirmación</span>
+                    </a>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="main-footer">
+            <p class="footer-names">Laura y Alejandro</p>
+            <p class="footer-date">19 . 09 . 2026</p>
+            <p class="footer-credit">Hecho con ♥ para nuestra boda</p>
+        </footer>
+    </div>
+
+    <!-- Script de lógica -->
+    <script src="app.js"></script>
+</body>
+</html>
