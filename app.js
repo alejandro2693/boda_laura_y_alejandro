@@ -1,5 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     
+    // Force scroll to top on reload
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     // ==========================================================================
     // 1. COUNTDOWN TIMER
     // ==========================================================================
@@ -143,15 +149,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // 5. BACKGROUND MUSIC
     // ==========================================================================
     const bgMusic = document.getElementById('bgMusic');
-    if (bgMusic) {
-        bgMusic.volume = 0.25; // Bajamos el volumen al 25% para que no sature
-    }
     const musicToggle = document.getElementById('musicToggle');
     const musicIcon = musicToggle ? musicToggle.querySelector('.music-icon') : null;
     let isPlaying = false;
     let hasInteracted = false;
 
     if (bgMusic && musicToggle) {
+        // Fallback para navegadores normales (iOS ignorará esto)
+        bgMusic.volume = 0.15;
+
         const toggleMusic = () => {
             if (isPlaying) {
                 bgMusic.pause();
