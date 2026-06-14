@@ -72,6 +72,11 @@ body {
     line-height: 1.6;
     background-color: var(--color-bg-light);
     /* Background fixed via ::before pseudoelement for iOS Safari compatibility */
+    text-wrap: pretty;
+}
+
+p, h1, h2, h3, h4, h5, h6, .welcome-text, .venue-details, .menu-item-desc {
+    text-wrap: pretty;
 }
 
 /* iOS Safari does not support background-attachment: fixed on body.
@@ -96,7 +101,7 @@ body::before {
     top: 0;
     bottom: 0;
     width: 380px;
-    z-index: 500;
+    z-index: 1; /* Move behind text */
     pointer-events: none;
     background-repeat: no-repeat;
     background-size: contain;
@@ -188,6 +193,7 @@ body.scrolled .border-right {
     color: var(--color-accent);
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
+    white-space: nowrap;
 }
 
 .couple-names {
@@ -257,6 +263,7 @@ body.scrolled .border-right {
     text-transform: uppercase;
     color: var(--color-secondary);
     margin-bottom: 1.2rem;
+    white-space: nowrap;
 }
 
 .wedding-venue {
@@ -823,8 +830,8 @@ body.scrolled .border-right {
 
     .content-container,
     .hero-content {
-        padding-left: 28vw;
-        padding-right: 28vw;
+        padding-left: 12vw;
+        padding-right: 12vw;
     }
 
     .couple-names .name {
@@ -856,7 +863,8 @@ body.scrolled .border-right {
     }
 
     .content-container {
-        padding: 0 0.5rem 3rem;
+        padding-top: 0;
+        padding-bottom: 3rem;
         gap: 2rem;
     }
 
