@@ -1137,8 +1137,8 @@ body.no-scroll {
 /* Large Mobile / Portrait Tablet view (max-width: 768px) */
 @media (max-width: 768px) {
     .border-decor {
-        width: 34vw; /* +20% larger */
-        max-width: 216px; /* +20% larger */
+        width: 40vw; /* Bastante más grande */
+        max-width: 260px; /* Bastante más grande */
         opacity: 0.95;
         /* Keep leaves fully visible and rich */
     }
@@ -1185,8 +1185,8 @@ body.no-scroll {
     /* Keep borders visible and large on small mobile screens */
     .border-decor {
         display: block;
-        width: 36vw; /* +20% larger */
-        max-width: 144px; /* +20% larger */
+        width: 45vw; /* Mucho más grande para móviles pequeños */
+        max-width: 180px; /* Incrementado para que destaque */
         opacity: 0.95;
     }
 
