@@ -480,25 +480,25 @@ body.scrolled .border-right {
    SECCIÃ“N: SPOTIFY
    ========================================================================== */
 .spotify-card {
-    background: linear-gradient(135deg, rgba(28, 185, 84, 0.05) 0%, var(--color-bg-card) 100%);
-    border: 1px solid rgba(28, 185, 84, 0.2);
+    background: transparent;
+    border: none;
 }
 
 .spotify-icon {
     font-size: 3rem;
     margin-bottom: 1rem;
-    filter: drop-shadow(0 4px 6px rgba(28, 185, 84, 0.2));
+    filter: drop-shadow(0 4px 6px rgba(112, 144, 118, 0.2));
 }
 
 .btn-spotify {
-    background-color: #1DB954;
+    background-color: var(--color-secondary);
     color: white;
     margin-top: 2rem;
 }
 
 .btn-spotify:hover {
-    background-color: #179c45;
-    box-shadow: 0 10px 20px rgba(29, 185, 84, 0.3);
+    background-color: var(--color-primary);
+    box-shadow: 0 10px 20px rgba(63, 74, 44, 0.3);
 }
 
 /* ==========================================================================
@@ -541,12 +541,12 @@ body.scrolled .border-right {
 }
 
 .btn-map {
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     color: white;
 }
 
 .btn-map:hover {
-    background-color: #2b331f;
+    background-color: var(--color-primary);
     box-shadow: 0 10px 20px rgba(63, 74, 44, 0.2);
 }
 
@@ -557,8 +557,10 @@ body.scrolled .border-right {
     background-color: white;
     border: 1px dashed var(--color-accent);
     border-radius: 16px;
-    padding: 2rem;
-    margin-top: 2rem;
+    padding: 1.5rem 1rem;
+    margin: 2rem auto 0;
+    width: fit-content;
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -576,15 +578,15 @@ body.scrolled .border-right {
 
 .iban-value {
     font-family: var(--font-sans);
-    font-size: 1.35rem;
+    font-size: clamp(0.7rem, 3.2vw, 1.25rem);
     font-weight: bold;
     color: var(--color-primary);
-    letter-spacing: 1px;
-    word-break: break-all;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
 }
 
 .btn-copy {
-    background-color: var(--color-primary);
+    background-color: var(--color-secondary);
     border: none;
     color: white;
     padding: 0.8rem 2.5rem;
@@ -596,7 +598,7 @@ body.scrolled .border-right {
 }
 
 .btn-copy:hover {
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     transform: translateY(-2px);
 }
@@ -874,10 +876,6 @@ body.scrolled .border-right {
 
     .section-title {
         font-size: 1.8rem;
-    }
-
-    .iban-value {
-        font-size: 1rem;
     }
 
     .btn {
