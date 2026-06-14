@@ -146,6 +146,160 @@ body.scrolled .border-right {
 }
 
 /* ==========================================================================
+   ENVELOPE OVERLAY (PANTALLA INICIAL)
+   ========================================================================== */
+body.no-scroll {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.envelope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg-light);
+    background-image: url('fondo-web.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 1s ease-in-out, visibility 1s;
+}
+
+.envelope-overlay.opened {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.envelope-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    height: 350px;
+    background-color: var(--color-bg-light);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--color-border);
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.envelope-overlay.opened .envelope-wrapper {
+    transform: translateY(100px);
+}
+
+/* Solapa superior (Flap) */
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background-color: #f7f6f4;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transform-origin: top;
+    transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 10;
+    border-bottom: 2px solid rgba(125, 107, 82, 0.1);
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.05));
+}
+
+.envelope-flap.opened {
+    transform: rotateX(180deg);
+}
+
+/* Cuerpo del sobre (parte inferior superpuesta) */
+.envelope-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fcfbfa;
+    clip-path: polygon(0 100%, 0 40%, 50% 70%, 100% 40%, 100% 100%);
+    z-index: 5;
+    box-shadow: inset 0 0 20px rgba(125, 107, 82, 0.05);
+}
+
+/* Contenido dentro del sobre */
+.envelope-body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 15; /* Por encima de todo para el botón */
+}
+
+.envelope-names {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeInNames 1.5s 0.5s forwards;
+    transform: translateY(20px);
+}
+
+.envelope-names .name {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    color: var(--color-primary);
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    font-weight: normal;
+}
+
+.envelope-names .ampersand {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--color-secondary);
+    margin: 5px 0;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    font-weight: normal;
+}
+
+@keyframes fadeInNames {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.btn-open {
+    background-color: var(--color-accent);
+    color: white;
+    font-family: var(--font-sans);
+    letter-spacing: 2px;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(125, 107, 82, 0.3);
+    transition: all 0.3s ease;
+    opacity: 0;
+    animation: fadeInNames 1.5s 1s forwards;
+    position: relative;
+    /* Simulate wax seal or elegant button */
+}
+
+.btn-open:hover {
+    background-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(63, 74, 44, 0.4);
+}
+
+/* ==========================================================================
    MAIN LAYOUT CONTAINER
    ========================================================================== */
 .main-wrapper {
@@ -312,24 +466,114 @@ body.scrolled .border-right {
 
 /* Scroll indicator */
 .scroll-indicator {
-    margin-top: 3rem;
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.scroll-arrow-container {
     animation: bounce 2s infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    transition: all 0.4s ease;
 }
 
 .scroll-indicator .arrow {
     font-size: 1.5rem;
     color: var(--color-accent);
+    transition: color 0.4s ease;
 }
 
 .scroll-indicator .scroll-text {
     font-size: 0.75rem;
-
     letter-spacing: 2px;
     color: var(--color-text-muted);
     margin-top: 0.3rem;
+    transition: opacity 0.3s ease, height 0.3s ease, margin 0.3s ease;
+}
+
+/* Scrolled fixed state */
+.scroll-indicator.fixed-scroll {
+    position: fixed;
+    bottom: 2rem;
+    left: auto;
+    right: 2rem;
+    transform: none;
+    margin-top: 0;
+}
+
+.scroll-indicator.fixed-scroll .scroll-text {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.scroll-indicator.fixed-scroll .scroll-arrow-container {
+    background-color: var(--color-secondary);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.scroll-indicator.fixed-scroll .arrow {
+    color: white;
+}
+
+/* Hidden state when at very bottom */
+.scroll-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px) scale(0.9);
+}
+
+/* ==========================================================================
+   MUSIC PLAYER
+   ========================================================================== */
+.music-toggle {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid var(--color-secondary);
+    color: var(--color-secondary);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+    background-color: var(--color-secondary);
+    color: white;
+}
+
+.music-toggle.playing {
+    background-color: var(--color-secondary);
+    color: white;
+    animation: pulseMusic 2s infinite;
+}
+
+@keyframes pulseMusic {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(112, 144, 118, 0.4); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(112, 144, 118, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(112, 144, 118, 0); }
 }
 
 /* ==========================================================================
@@ -411,6 +655,7 @@ body.scrolled .border-right {
     font-family: var(--font-serif);
     font-size: 1.45rem;
     color: var(--color-accent);
+    margin-top: 0;
     margin-bottom: 1rem;
     font-style: italic;
 }
@@ -453,10 +698,13 @@ body.scrolled .border-right {
     margin-bottom: 1.5rem;
 }
 
+.menu-choice:last-child {
+    margin-bottom: 0;
+}
+
 .menu-item-title {
     font-family: var(--font-sans);
     font-weight: bold;
-
     font-size: 0.85rem;
     letter-spacing: 2px;
     color: var(--color-secondary);
@@ -465,7 +713,67 @@ body.scrolled .border-right {
 }
 
 .menu-item-desc {
-    margin-bottom: 0.8rem;
+    margin-bottom: 0;
+}
+
+.menu-item-desc:last-child {
+    margin-bottom: 0;
+}
+
+/* Kids Menu Styles */
+.kids-menu-wrapper {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.btn-kids-menu {
+    background: transparent;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    padding: 0.6rem 1.2rem;
+    border-radius: 20px;
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.btn-kids-menu:hover {
+    background: var(--color-accent);
+    color: #fff;
+}
+
+.btn-kids-menu .icon-arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.btn-kids-menu.active .icon-arrow {
+    transform: rotate(180deg);
+}
+
+.kids-menu-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out;
+    opacity: 0;
+    width: 100%;
+}
+
+.kids-menu-content.expanded {
+    max-height: 400px;
+    opacity: 1;
+}
+
+.kids-menu-inner {
+    padding: 1.5rem 0;
+    border-top: 1px dashed var(--color-border);
+    margin-top: 1.5rem;
 }
 
 .menu-note {
@@ -474,6 +782,44 @@ body.scrolled .border-right {
     border-top: 1px solid rgba(125, 107, 82, 0.1);
     padding-top: 1.5rem;
     margin-top: 2rem;
+}
+
+/* ==========================================================================
+   SECCIÃ“N: CRONOGRAMA
+   ========================================================================== */
+.timeline-list {
+    list-style: none;
+    padding: 0;
+    margin: 2.5rem auto 1rem;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.timeline-list li {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.timeline-time {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--color-primary);
+    min-width: 75px;
+    text-align: right;
+    border-right: 2px solid var(--color-accent);
+    padding-right: 1.2rem;
+}
+
+.timeline-desc {
+    font-family: var(--font-sans);
+    font-size: 1.15rem;
+    color: var(--color-text-dark);
+    text-align: left;
+    line-height: 1.3;
 }
 
 /* ==========================================================================
@@ -868,6 +1214,16 @@ body.scrolled .border-right {
         padding-top: 0;
         padding-bottom: 3rem;
         gap: 2rem;
+    }
+
+    .timeline-time {
+        font-size: 1.25rem;
+        min-width: 65px;
+        padding-right: 1rem;
+    }
+
+    .timeline-desc {
+        font-size: 1.05rem;
     }
 
     .card-section {

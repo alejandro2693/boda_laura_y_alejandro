@@ -98,18 +98,152 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ==========================================================================
-    // 4. SCROLL STATE FOR DECORATIONS
+    // 4. SCROLL STATE FOR DECORATIONS & SCROLL INDICATOR
     // ==========================================================================
+    const scrollIndicator = document.getElementById('scrollIndicator');
+    
     const handleScroll = () => {
-        if (window.scrollY > 50) {
+        const scrollPos = window.scrollY;
+        
+        // Body scrolled state
+        if (scrollPos > 50) {
             document.body.classList.add('scrolled');
         } else {
             document.body.classList.remove('scrolled');
+        }
+        
+        // Scroll indicator dynamic states
+        if (scrollIndicator) {
+            const hero = document.querySelector('.section-hero');
+            const heroHeight = hero ? hero.offsetHeight : window.innerHeight;
+            
+            // Fixed state when scrolling past 40% of hero
+            if (scrollPos > heroHeight * 0.4) {
+                scrollIndicator.classList.add('fixed-scroll');
+            } else {
+                scrollIndicator.classList.remove('fixed-scroll');
+            }
+            
+            // Hide near the bottom
+            const docHeight = document.documentElement.scrollHeight;
+            const windowHeight = window.innerHeight;
+            if (scrollPos + windowHeight >= docHeight - 100) {
+                scrollIndicator.classList.add('hidden');
+            } else {
+                scrollIndicator.classList.remove('hidden');
+            }
         }
     };
     
     // Initial check and event listener
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
+
+    // ==========================================================================
+    // 5. BACKGROUND MUSIC
+    // ==========================================================================
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    const musicIcon = musicToggle ? musicToggle.querySelector('.music-icon') : null;
+    let isPlaying = false;
+    let hasInteracted = false;
+
+    if (bgMusic && musicToggle) {
+        const toggleMusic = () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicToggle.classList.remove('playing');
+                isPlaying = false;
+            } else {
+                bgMusic.play().then(() => {
+                    musicToggle.classList.add('playing');
+                    isPlaying = true;
+                }).catch(e => {
+                    console.log("Audio play failed:", e);
+                });
+            }
+        };
+
+        musicToggle.addEventListener('click', () => {
+            hasInteracted = true;
+            toggleMusic();
+        });
+
+        // Attempt to play on first interaction (click/touch/scroll)
+        const playOnInteraction = () => {
+            if (!hasInteracted && !isPlaying) {
+                const playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        musicToggle.classList.add('playing');
+                        isPlaying = true;
+                        hasInteracted = true;
+                        
+                        // Solo cuando se haya reproducido con éxito quitamos los listeners
+                        document.removeEventListener('click', playOnInteraction);
+                        document.removeEventListener('touchstart', playOnInteraction);
+                        window.removeEventListener('scroll', playOnInteraction);
+                    }).catch(e => {
+                        // Si falla (por ejemplo, el scroll no cuenta como interacción válida en Chrome/Safari),
+                        // NO quitamos los listeners para que el siguiente click sí funcione.
+                        console.log("Esperando interacción válida para autoplay:", e);
+                    });
+                }
+            }
+        };
+
+        document.addEventListener('click', playOnInteraction);
+        document.addEventListener('touchstart', playOnInteraction);
+        window.addEventListener('scroll', playOnInteraction, { passive: true });
+    }
+    // ==========================================================================
+    // 5. ENVELOPE ANIMATION & WELCOME
+    // ==========================================================================
+    const envelopeOverlay = document.getElementById('envelopeOverlay');
+    const envelopeFlap = document.getElementById('envelopeFlap');
+    const btnOpenEnvelope = document.getElementById('btnOpenEnvelope');
+    
+    if (envelopeOverlay && btnOpenEnvelope) {
+        // Block scroll initially
+        document.body.classList.add('no-scroll');
+        
+        btnOpenEnvelope.addEventListener('click', () => {
+            // Start envelope animation
+            envelopeFlap.classList.add('opened');
+            
+            // Fade out overlay after flap opens
+            setTimeout(() => {
+                envelopeOverlay.classList.add('opened');
+                // Remove scroll block
+                document.body.classList.remove('no-scroll');
+            }, 800); // Wait for flap animation to almost finish
+            
+            // Play music automatically since user interacted
+            if (bgMusic && !isPlaying) {
+                const playPromise = bgMusic.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        musicToggle.classList.add('playing');
+                        isPlaying = true;
+                        hasInteracted = true;
+                    }).catch(e => console.log("Autoplay failed:", e));
+                }
+            }
+            hasInteracted = true;
+        });
+    }
+
+    // ==========================================================================
+    // 6. KIDS MENU TOGGLE
+    // ==========================================================================
+    const btnKidsMenu = document.getElementById('btnKidsMenu');
+    const kidsMenuContent = document.getElementById('kidsMenuContent');
+
+    if (btnKidsMenu && kidsMenuContent) {
+        btnKidsMenu.addEventListener('click', () => {
+            btnKidsMenu.classList.toggle('active');
+            kidsMenuContent.classList.toggle('expanded');
+        });
+    }
 
 });

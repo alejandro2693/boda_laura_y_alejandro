@@ -12,6 +12,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- ENVELOPE OVERLAY -->
+    <div id="envelopeOverlay" class="envelope-overlay">
+        <div class="envelope-wrapper">
+            <div class="envelope-flap" id="envelopeFlap"></div>
+            <div class="envelope-body">
+                <div class="envelope-names">
+                    <span class="name">Laura</span>
+                    <span class="ampersand">y</span>
+                    <span class="name">Alejandro</span>
+                </div>
+                <button id="btnOpenEnvelope" class="btn btn-open">Abrir Invitación</button>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Bordes decorativos laterales (Fijos en escritorio, adaptados en móvil) -->
     <div class="border-decor border-left"></div>
@@ -56,12 +71,23 @@
                     </div>
                 </div>
 
-                <div class="scroll-indicator">
-                    <span class="arrow">&#8595;</span>
-                    <span class="scroll-text">Desliza para ver más</span>
-                </div>
             </div>
         </header>
+
+        <div class="scroll-indicator" id="scrollIndicator">
+            <div class="scroll-arrow-container">
+                <span class="arrow">&#8595;</span>
+            </div>
+            <span class="scroll-text">Desliza para ver más</span>
+        </div>
+
+        <!-- REPRODUCTOR DE MÚSICA -->
+        <audio id="bgMusic" loop>
+            <source src="bg-music.mp3" type="audio/mpeg">
+        </audio>
+        <button id="musicToggle" class="music-toggle" aria-label="Reproducir/Pausar música">
+            <span class="music-icon">🎵</span>
+        </button>
 
         <!-- CONTENEDOR CENTRAL DE SECCIONES -->
         <main class="content-container">
@@ -73,6 +99,35 @@
                     <p class="welcome-text font-serif">
                         Hay momentos en la vida que son únicos, pero compartirlos con las personas que más queremos los hace inolvidables. Queremos dar el "sí, quiero" rodeados de nuestra familia y amigos, y nos haría muy felices contar con tu presencia en este gran día.
                     </p>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: CRONOGRAMA -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title">Cronograma del día</h2>
+                    <ul class="timeline-list">
+                        <li>
+                            <span class="timeline-time">18:00</span>
+                            <span class="timeline-desc">Llegada de invitados</span>
+                        </li>
+                        <li>
+                            <span class="timeline-time">18:15</span>
+                            <span class="timeline-desc">Ceremonia</span>
+                        </li>
+                        <li>
+                            <span class="timeline-time">19:00</span>
+                            <span class="timeline-desc">Cóctel de bienvenida</span>
+                        </li>
+                        <li>
+                            <span class="timeline-time">20:00</span>
+                            <span class="timeline-desc">Banquete</span>
+                        </li>
+                        <li>
+                            <span class="timeline-time">22:15</span>
+                            <span class="timeline-desc">¡Fiesta y barra libre!</span>
+                        </li>
+                    </ul>
                 </div>
             </section>
 
@@ -134,6 +189,25 @@
                             <p class="menu-item-desc">¡Habrá recena y barra libre para disfrutar toda la noche!</p>
                         </div>
                     </div>
+                    
+                    <div class="kids-menu-wrapper">
+                        <button class="btn-kids-menu" id="btnKidsMenu">
+                            <span>Ver menú infantil</span>
+                            <span class="icon-arrow">▼</span>
+                        </button>
+                        <div class="kids-menu-content" id="kidsMenuContent">
+                            <div class="kids-menu-inner">
+                                <div class="menu-category">
+                                    <h3>Primer plato</h3>
+                                    <p class="menu-item-desc">Consomé de arroz y pescado</p>
+                                </div>
+                                <div class="menu-category" style="margin-top: 1.5rem;">
+                                    <h3>Plato principal</h3>
+                                    <p class="menu-item-desc">Delicias de pollo con papas fritas y croquetas de zanahoria</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="menu-note">
                         <p><em>* Si tienes alguna intolerancia, alergia o sigues una dieta especial (vegano, vegetariano, celíaco, infantil, etc.), por favor indícalo en el formulario de confirmación.</em></p>
                     </div>
@@ -184,6 +258,29 @@
                     <a href="https://www.google.com/maps/search/?api=1&query=28.05836913674236,-15.473613835663382" target="_blank" class="btn btn-map" rel="noopener noreferrer">
                         <span>Cómo llegar (Google Maps)</span>
                     </a>
+
+                    <div class="transport-info" style="margin-top: 2.5rem; padding-top: 2rem; border-top: 1px dashed var(--color-accent);">
+                        <h3 style="font-family: var(--font-serif); color: var(--color-primary); margin-bottom: 1.2rem; font-size: 1.4rem;">Cómo llegar y volver</h3>
+                        <p class="welcome-text" style="font-size: 1rem; margin-bottom: 1.2rem;">
+                            Sabemos que vienen desde lugares muy diversos y queremos ponérselo fácil. Si prefieren no coger el coche, pueden llegar a la finca utilizando la <a href="https://guaguasglobal.com/pdflineas/Linea_302.pdf" target="_blank" style="color: var(--color-primary); text-decoration: underline; font-weight: bold;" rel="noopener noreferrer">Línea 302 de Guaguas Global</a>.
+                        </p>
+                        <p class="welcome-text" style="font-size: 1rem;">
+                            Y para el regreso... ¡la fiesta no tiene prisa! Como tendrán total flexibilidad para abandonar la celebración a su ritmo, les sugerimos pedir un taxi a través de la app <a href="https://pidetaxi.es/" target="_blank" style="color: var(--color-primary); text-decoration: underline; font-weight: bold;" rel="noopener noreferrer">PideTaxi</a> para volver cómodamente (por ejemplo, hasta la Estación de San Telmo).
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: CÓDIGO DE VESTIMENTA -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title">Código de vestimenta</h2>
+                    <p class="welcome-text" style="margin-bottom: 0;">
+                        Para el código de vestimenta, tu comodidad es nuestra prioridad. Ven con el estilo que te haga sentir mejor.
+                    </p>
+                    <div class="menu-note" style="margin-top: 1.5rem; padding-top: 1.5rem;">
+                        <p><em>* Como pequeña recomendación, la finca combina zonas de escaleras, caminos de tierra y césped. Te sugerimos evitar los tacones excesivamente finos para que puedas moverte con soltura y disfrutar de cada momento junto a nosotros.</em></p>
+                    </div>
                 </div>
             </section>
 
@@ -210,7 +307,10 @@
                 <div class="card-content rsvp-card">
                     <h2 class="section-title">Confirmar Asistencia</h2>
                     <p class="welcome-text">
-                        Para ayudarnos a organizar los detalles con el catering y transporte, por favor, confírmanos tu asistencia completando el formulario a continuación.
+                        Para ayudarnos a cuidar cada detalle del banquete, el menú y la organización de los espacios, por favor, confírmanos tu asistencia completando el formulario a continuación.
+                    </p>
+                    <p class="welcome-text" style="font-family: var(--font-serif); color: var(--color-primary); font-weight: bold; font-style: italic; font-size: 1.2rem; margin-top: 1rem; line-height: 1.4;">
+                        Por favor, confirma antes del 8 de septiembre de 2026.<br>¡Cuanto antes nos avises, mucho mejor!
                     </p>
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5Ju69RdzbZ7xg1UhukKceO0EqPA0Xv-B7-Z6JG9Dk8FJWWw/viewform?usp=publish-editor" target="_blank" class="btn btn-rsvp" rel="noopener noreferrer">
                         <span>Abrir Formulario de Confirmación</span>
