@@ -143,6 +143,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 5. BACKGROUND MUSIC
     // ==========================================================================
     const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic) {
+        bgMusic.volume = 0.25; // Bajamos el volumen al 25% para que no sature
+    }
     const musicToggle = document.getElementById('musicToggle');
     const musicIcon = musicToggle ? musicToggle.querySelector('.music-icon') : null;
     let isPlaying = false;
