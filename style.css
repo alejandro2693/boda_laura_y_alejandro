@@ -31,6 +31,11 @@
     --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
+/* Escalado global de fuentes (+1pt aprox) */
+html {
+    font-size: 17px;
+}
+
 /* Local Web Fonts declarations */
 @font-face {
     font-family: 'Questrial';
@@ -871,7 +876,7 @@ body.no-scroll {
 }
 
 .venue-logo {
-    max-width: 240px;
+    max-width: 192px; /* Reducido un 20% respecto a los 240px anteriores */
     width: 100%;
     height: auto;
     display: block;
@@ -917,15 +922,16 @@ body.no-scroll {
     background-color: white;
     border: 1px dashed var(--color-accent);
     border-radius: 16px;
-    padding: 1.5rem 1rem;
+    padding: 2rem 1rem;
     margin: 2rem auto 0;
-    width: fit-content;
+    width: 100%; /* Ajustado al ancho del texto */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
+    gap: 1.2rem;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
+    container-type: inline-size; /* Nuevo: define el contenedor para escalar la fuente */
 }
 
 .iban-title {
@@ -938,11 +944,12 @@ body.no-scroll {
 
 .iban-value {
     font-family: var(--font-sans);
-    font-size: clamp(0.7rem, 3.2vw, 1.25rem);
+    font-size: clamp(0.8rem, 4vw, 1.35rem); /* Fallback */
+    font-size: clamp(0.7rem, 6.5cqw, 1.45rem); /* Escalado dinámico PERFECTO relativo al recuadro */
     font-weight: bold;
     color: var(--color-primary);
-    letter-spacing: 0.5px;
-    white-space: nowrap;
+    letter-spacing: 0px; /* Reducimos a 0 para maximizar espacio */
+    white-space: nowrap; /* Obligatorio en una sola línea */
 }
 
 .btn-copy {

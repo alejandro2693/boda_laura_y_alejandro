@@ -255,4 +255,44 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // ==========================================================================
+    // 6.5. TRANSPORT INFO TOGGLE
+    // ==========================================================================
+    const btnTransportInfo = document.getElementById('btnTransportInfo');
+    const transportContent = document.getElementById('transportContent');
+
+    if (btnTransportInfo && transportContent) {
+        btnTransportInfo.addEventListener('click', () => {
+            btnTransportInfo.classList.toggle('active');
+            transportContent.classList.toggle('expanded');
+        });
+    }
+
+    // ==========================================================================
+    // 7. COPIAR IBAN
+    // ==========================================================================
+    const btnCopyIban = document.getElementById('btn-copy-iban');
+    const ibanValue = document.getElementById('iban-value');
+    const spanCopyText = document.getElementById('copy-text');
+
+    if (btnCopyIban && ibanValue && spanCopyText) {
+        btnCopyIban.addEventListener('click', () => {
+            const txtIBAN = ibanValue.innerText.trim();
+            navigator.clipboard.writeText(txtIBAN).then(() => {
+                const originalText = spanCopyText.innerText;
+                spanCopyText.innerText = '¡Copiado!';
+                btnCopyIban.style.backgroundColor = 'var(--color-primary)';
+                btnCopyIban.style.color = 'white';
+                
+                setTimeout(() => {
+                    spanCopyText.innerText = originalText;
+                    btnCopyIban.style.backgroundColor = '';
+                    btnCopyIban.style.color = '';
+                }, 2000);
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+            });
+        });
+    }
+
 });
