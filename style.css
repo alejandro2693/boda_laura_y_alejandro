@@ -106,14 +106,14 @@ body::before {
     will-change: transform;
 }
 
-/* ESTADO INICIAL (ARRIBA): 100% más grande (escala x2) */
+/* ESTADO INICIAL (ARRIBA): Escala 2.5 */
 body:not(.scrolled) .border-left {
-    transform: scale(2) translateZ(0);
+    transform: scale(2.5) translateZ(0);
     transform-origin: left center;
 }
 
 body:not(.scrolled) .border-right {
-    transform: scale(2) translateZ(0);
+    transform: scale(2.5) translateZ(0);
     transform-origin: right center;
 }
 
@@ -246,7 +246,17 @@ body.scrolled .border-right {
     font-size: 2.2rem;
     letter-spacing: 2px;
     color: var(--color-primary);
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem; /* Reduced slightly to group with time */
+    white-space: nowrap; /* Prevent date from wrapping */
+}
+
+.wedding-time {
+    font-family: var(--font-sans);
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-secondary);
+    margin-bottom: 1.2rem;
 }
 
 .wedding-venue {
@@ -367,6 +377,7 @@ body.scrolled .border-right {
     font-size: 1.1rem;
     color: var(--color-text-dark);
     line-height: 1.8;
+    text-wrap: pretty;
 }
 
 .font-serif {
@@ -503,6 +514,7 @@ body.scrolled .border-right {
 .venue-details {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    text-wrap: pretty;
 }
 
 .address {
@@ -781,6 +793,10 @@ body.scrolled .border-right {
         font-size: 1.6rem;
     }
 
+    .wedding-time {
+        font-size: 1.1rem;
+    }
+
     .wedding-venue {
         font-size: 1.15rem;
     }
@@ -807,8 +823,8 @@ body.scrolled .border-right {
 
     .content-container,
     .hero-content {
-        padding-left: 24vw;
-        padding-right: 24vw;
+        padding-left: 28vw;
+        padding-right: 28vw;
     }
 
     .couple-names .name {
@@ -879,13 +895,13 @@ body.scrolled .border-right {
 
     /* iOS device detected */
     body::before {
-        /* On iOS, % height can fail. Use vh/vw for fixed backgrounds */
-        top: 0;
+        /* On iOS, % height can fail. Use oversized vh/vw for fixed backgrounds */
+        top: -10vh;
         left: 0;
         width: 100vw;
-        height: 100vh;
+        height: 120vh;
         /* Use dynamic viewport height (dvh) for newer iOS versions */
-        height: 100dvh;
+        height: 120dvh;
         /* Force GPU layer for smooth rendering */
         -webkit-transform: translateZ(0);
         transform: translateZ(0);
