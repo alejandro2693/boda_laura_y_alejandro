@@ -190,10 +190,11 @@ body.no-scroll {
     position: relative;
     width: 90%;
     max-width: 500px;
-    height: 350px;
+    height: 52vw; /* Aún más rectangular (aprox 1.7 ratio) */
+    max-height: 294px; /* 500px / 1.7 */
     background-color: var(--color-bg-light);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-    border: 1px solid var(--color-border);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25), 0 10px 20px rgba(0, 0, 0, 0.15); /* Sombra mucho más pronunciada */
+    border: 1px solid rgba(125, 107, 82, 0.3); /* Borde un poco más visible */
     transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -213,8 +214,8 @@ body.no-scroll {
     transform-origin: top;
     transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 10;
-    border-bottom: 2px solid rgba(125, 107, 82, 0.1);
-    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.05));
+    border-bottom: 2px solid rgba(125, 107, 82, 0.15);
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.15)); /* Sombra de la solapa más fuerte */
 }
 
 .envelope-flap.opened {
@@ -254,7 +255,7 @@ body.no-scroll {
     flex-direction: column;
     align-items: center;
     line-height: 1.1;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     opacity: 0;
     animation: fadeInNames 1.5s 0.5s forwards;
     transform: translateY(20px);
@@ -262,7 +263,7 @@ body.no-scroll {
 
 .envelope-names .name {
     font-family: var(--font-heading);
-    font-size: 4rem;
+    font-size: 2.8rem;
     color: var(--color-primary);
     text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
     font-weight: normal;
@@ -270,7 +271,7 @@ body.no-scroll {
 
 .envelope-names .ampersand {
     font-family: var(--font-heading);
-    font-size: 2.2rem;
+    font-size: 1.4rem;
     color: var(--color-secondary);
     margin: 5px 0;
     text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
@@ -681,9 +682,13 @@ body.no-scroll {
     padding: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 1.2rem; /* Aumentado para separar los platos del cóctel */
     max-width: 480px;
     margin: 0 auto;
+}
+
+.menu-drinks {
+    gap: 0.6rem; /* Restauramos el gap original para las bebidas */
 }
 
 .menu-list li {
@@ -817,7 +822,7 @@ body.no-scroll {
     font-size: 1.4rem;
     font-weight: bold;
     color: var(--color-primary);
-    min-width: 75px;
+    flex: 0 0 85px; /* Fijar ancho exacto para que todas las líneas coincidan */
     text-align: right;
     border-right: 2px solid var(--color-accent);
     padding-right: 1.2rem;
@@ -1132,8 +1137,8 @@ body.no-scroll {
 /* Large Mobile / Portrait Tablet view (max-width: 768px) */
 @media (max-width: 768px) {
     .border-decor {
-        width: 28vw;
-        max-width: 180px;
+        width: 34vw; /* +20% larger */
+        max-width: 216px; /* +20% larger */
         opacity: 0.95;
         /* Keep leaves fully visible and rich */
     }
@@ -1180,8 +1185,8 @@ body.no-scroll {
     /* Keep borders visible and large on small mobile screens */
     .border-decor {
         display: block;
-        width: 30vw;
-        max-width: 120px;
+        width: 36vw; /* +20% larger */
+        max-width: 144px; /* +20% larger */
         opacity: 0.95;
     }
 
@@ -1189,6 +1194,19 @@ body.no-scroll {
     .hero-content {
         padding-left: 12vw;
         padding-right: 12vw;
+    }
+
+    .envelope-names {
+        margin-bottom: 0.8rem; /* Menos margen inferior para que quepa bien */
+    }
+
+    .envelope-names .name {
+        font-size: 2rem; /* Más pequeño para que no se salga la L */
+    }
+
+    .envelope-names .ampersand {
+        font-size: 1.1rem;
+        margin: 0;
     }
 
     .couple-names .name {
@@ -1227,7 +1245,7 @@ body.no-scroll {
 
     .timeline-time {
         font-size: 1.25rem;
-        min-width: 65px;
+        flex: 0 0 75px; /* Fijar ancho exacto también en móviles */
         padding-right: 1rem;
     }
 
