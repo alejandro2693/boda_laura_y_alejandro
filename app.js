@@ -295,4 +295,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // ==========================================================================
+    // 8. SECONDARY RSVP BUTTON
+    // ==========================================================================
+    const rsvpSection = document.querySelector('.rsvp-card');
+    const floatingRsvp = document.getElementById('floatingRsvp');
+
+    if (rsvpSection && floatingRsvp) {
+        const checkScroll = () => {
+            const rect = rsvpSection.getBoundingClientRect();
+            // If the bottom of the RSVP card goes above the top of viewport
+            if (rect.bottom < 0) {
+                floatingRsvp.classList.add('show');
+            } else {
+                floatingRsvp.classList.remove('show');
+            }
+        };
+
+        window.addEventListener('scroll', checkScroll, { passive: true });
+        checkScroll();
+    }
+
 });

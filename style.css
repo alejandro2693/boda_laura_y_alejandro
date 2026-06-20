@@ -1189,7 +1189,7 @@ body.no-scroll {
     }
 
     .section-title {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
     }
 }
 
@@ -1272,7 +1272,7 @@ body.no-scroll {
     }
 
     .section-title {
-        font-size: 1.8rem;
+        font-size: 2.3rem;
     }
 
     .btn {
@@ -1316,5 +1316,108 @@ body.no-scroll {
         transform: translateZ(0);
         /* Use will-change to prevent scroll jank */
         will-change: transform;
+    }
+}
+
+/* ==========================================================================
+   CAROUSEL SECTION
+   ========================================================================== */
+.carousel-section {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 1rem;
+    z-index: 2;
+}
+
+.carousel-container {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.carousel-track {
+    display: flex;
+    width: max-content;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    animation: scroll 75s linear infinite;
+}
+
+.carousel-track img {
+    height: 280px;
+    width: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+
+.carousel-track img:hover {
+    transform: scale(1.03);
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50% - 0.75rem));
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-track img {
+        height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-track img {
+        height: 180px;
+    }
+    .carousel-track {
+        gap: 1rem;
+    }
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-50% - 0.5rem)); }
+    }
+}
+
+/* ==========================================================================
+   SECONDARY RSVP BUTTON
+   ========================================================================== */
+.secondary-rsvp-container {
+    text-align: center;
+    padding: 0;
+    margin-top: -1rem;
+    margin-bottom: -2.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.secondary-rsvp-container .btn {
+    white-space: nowrap;
+}
+
+.secondary-rsvp-container.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (min-width: 769px) {
+    .secondary-rsvp-container {
+        display: none !important;
     }
 }
