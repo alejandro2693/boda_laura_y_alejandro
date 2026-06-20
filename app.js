@@ -307,13 +307,31 @@ document.addEventListener("DOMContentLoaded", () => {
             // If the bottom of the RSVP card goes above the top of viewport
             if (rect.bottom < 0) {
                 floatingRsvp.classList.add('show');
-            } else {
-                floatingRsvp.classList.remove('show');
             }
         };
 
         window.addEventListener('scroll', checkScroll, { passive: true });
         checkScroll();
+    }
+
+    // ==========================================================================
+    // 9. CAROUSEL TOUCH LOGIC
+    // ==========================================================================
+    const carouselTrackElement = document.querySelector('.carousel-track');
+    let carouselResumeTimeout;
+
+    if (carouselTrackElement) {
+        carouselTrackElement.addEventListener('touchstart', () => {
+            clearTimeout(carouselResumeTimeout);
+            carouselTrackElement.style.animationPlayState = 'paused';
+        }, { passive: true });
+
+        carouselTrackElement.addEventListener('touchend', () => {
+            clearTimeout(carouselResumeTimeout);
+            carouselResumeTimeout = setTimeout(() => {
+                carouselTrackElement.style.animationPlayState = 'running';
+            }, 2000);
+        }, { passive: true });
     }
 
 });
