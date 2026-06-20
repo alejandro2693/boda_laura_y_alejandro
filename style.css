@@ -962,7 +962,6 @@ body.no-scroll {
     border: none;
     color: white;
     padding: 0.8rem 2.5rem;
-    font-size: 0.95rem;
     font-weight: bold;
     letter-spacing: 1px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -992,7 +991,6 @@ body.no-scroll {
     background-color: var(--color-accent);
     color: white;
     margin-top: 2rem;
-    font-size: 1.1rem;
     padding: 1.1rem 3rem;
 }
 
@@ -1018,7 +1016,8 @@ body.no-scroll {
     cursor: pointer;
     border: none;
     transition: var(--transition-smooth);
-    font-size: 0.95rem;
+    font-size: 1.15rem;
+    white-space: nowrap;
 }
 
 .btn:active {
