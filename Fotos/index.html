@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <title>Invitación de Boda - Laura & Alejandro</title>
+    <!-- Google Fonts: Questrial, Pinyon Script, Great Vibes, Playfair Display -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Pinyon+Script&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Questrial&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="Favicon.png">
+    <link rel="apple-touch-icon" href="Favicon.png">
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Meta tags para compartir (WhatsApp, Facebook, etc.) -->
+    <meta property="og:title" content="¡Nos casamos! - Laura y Alejandro">
+    <meta property="og:description" content="Acompáñanos en nuestro gran día el 19 de septiembre de 2026 en la Finca El Maipez, Gran Canaria.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="logo-maipez.png">
+</head>
+<body>
+    <!-- ENVELOPE OVERLAY -->
+    <div id="envelopeOverlay" class="envelope-overlay">
+        <div class="envelope-wrapper">
+            <div class="envelope-flap" id="envelopeFlap"></div>
+            <div class="envelope-body">
+                <div class="envelope-names">
+                    <span class="name">Laura</span>
+                    <span class="ampersand">y</span>
+                    <span class="name">Alejandro</span>
+                </div>
+            </div>
+        </div>
+        <button id="btnOpenEnvelope" class="btn btn-open" style="margin-top: 3rem;">Abrir Invitación</button>
+        <p style="margin-top: 1rem; font-family: var(--font-sans); font-size: 0.85rem; color: var(--color-text-muted); opacity: 0; animation: fadeInNames 1.5s 1.5s forwards; letter-spacing: 1px;">Sube el volumen para vivir la experiencia 🎵</p>
+    </div>
+
+
+    <!-- Bordes decorativos laterales (Fijos en escritorio, adaptados en móvil) -->
+    <div class="border-decor border-left"></div>
+    <div class="border-decor border-right"></div>
+
+    <div class="main-wrapper">
+        <!-- SECCIÓN 1: HERO -->
+        <header class="section-hero">
+            <div class="hero-content fade-in">
+                <p class="pre-title">¡Nos casamos!</p>
+                <h1 class="couple-names">
+                    <span class="name">Laura</span>
+                    <span class="ampersand font-mistrully">y</span>
+                    <span class="name">Alejandro</span>
+                </h1>
+
+                <p class="wedding-date">19 . 09 . 2026</p>
+                <p class="wedding-time">Sábado | 18:00</p>
+                <p class="wedding-venue">Finca El Maipez, Gran Canaria</p>
+                
+                <!-- Cuenta atrás -->
+                <div class="countdown" id="countdown">
+                    <div class="time-block">
+                        <span class="time-val" id="days">00</span>
+                        <span class="time-label">Días</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-val" id="hours">00</span>
+                        <span class="time-label">Horas</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-val" id="minutes">00</span>
+                        <span class="time-label">Mins</span>
+                    </div>
+                    <div class="time-block">
+                        <span class="time-val" id="seconds">00</span>
+                        <span class="time-label">Segs</span>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+        <div class="scroll-indicator" id="scrollIndicator">
+            <div class="scroll-arrow-container">
+                <span class="arrow">&#8595;</span>
+            </div>
+            <span class="scroll-text">Desliza para ver más</span>
+        </div>
+
+        <!-- REPRODUCTOR DE MÚSICA -->
+        <audio id="bgMusic" loop>
+            <source src="bg-music.mp3" type="audio/mpeg">
+        </audio>
+        <button id="musicToggle" class="music-toggle" aria-label="Reproducir/Pausar música">
+            <span class="music-icon">🎵</span>
+        </button>
+
+        <!-- CONTENEDOR CENTRAL DE SECCIONES -->
+        <main class="content-container">
+
+            <!-- SECCIÓN 2: BIENVENIDA -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title" style="font-size: 2.8rem; line-height: 1.2;">No seríamos nosotros sin ti.<br>¡Acompáñanos en nuestro día!</h2>
+                    <p class="welcome-text font-serif">
+                        Hay momentos en la vida que son únicos, pero compartirlos con las personas que más queremos los hace inolvidables. Queremos dar el "sí, quiero" rodeados de nuestra familia y amigos, y nos haría muy felices contar con tu presencia en este gran día.
+                    </p>
+                </div>
+            </section>
+
+
+            <!-- SECCIÓN 3: EL MENÚ -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title">El Menú</h2>
+                    <p class="section-intro">Un banquete pensado para celebrar el amor y disfrutar con los cinco sentidos.</p>
+                    
+                    <div class="menu-details">
+                        <div class="menu-category">
+                            <h3>Cóctel de Bienvenida</h3>
+                            <ul class="menu-list">
+                                <li>Tabla de quesos canarios con frutos secos.</li>
+                                <li>Chupito de salmorejo.</li>
+                                <li>Saquitos de langostino y pesto.</li>
+                                <li>Won ton de pato con verdura agridulce y salsa de soja.</li>
+                                <li>Brocheta de pulpo frito con esfera de papa y mojo verde.</li>
+                                <li>Mini fajitas de pollo con verduras y guacamole.</li>
+                                <li>Ensartado de langostino crujiente con salsa agridulce.</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Primer Plato</h3>
+                            <p class="menu-item-desc">Hojaldre relleno de setas cremosas pintado con mousse de queso y crocante de almendras.</p>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Sorbete</h3>
+                            <p class="menu-item-desc">Sorbete de limón al cava.</p>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Plato Principal</h3>
+                            <p class="menu-choice-title">A elegir entre:</p>
+                            <div class="menu-choice">
+                                <p class="menu-item-title">Pescado</p>
+                                <p class="menu-item-desc">Lomo de lubina acompañado de papas arrugadas y saquito de verdura con mojo verde.</p>
+                            </div>
+                            <div class="menu-choice">
+                                <p class="menu-item-title">Carne</p>
+                                <p class="menu-item-desc">Solomillo de cerdo acompañado de papas crema y saquito de verduras con salsa de Pedro Ximénez.</p>
+                            </div>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Postre</h3>
+                            <p class="menu-item-desc">Esfera crujiente de chocolate blanco rellena de crema de maracuyá sobre una cama de galleta con frutos rojos.</p>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Bodega</h3>
+                            <ul class="menu-list menu-drinks">
+                                <li>Vino blanco Nuviana.</li>
+                                <li>Vino tinto Valsotillo 2023.</li>
+                                <li>Cerveza Estrella Galicia.</li>
+                                <li>Cóctel San Francisco.</li>
+                                <li>Refrescos y Agua Mineral.</li>
+                            </ul>
+                        </div>
+                        <div class="menu-category">
+                            <h3>Y para terminar...</h3>
+                            <p class="menu-item-desc">¡Habrá recena y barra libre para disfrutar toda la noche!</p>
+                        </div>
+                    </div>
+                    
+                    <div class="kids-menu-wrapper">
+                        <button class="btn-kids-menu" id="btnKidsMenu">
+                            <span>Ver menú infantil</span>
+                            <span class="icon-arrow">▼</span>
+                        </button>
+                        <div class="kids-menu-content" id="kidsMenuContent">
+                            <div class="kids-menu-inner">
+                                <div class="menu-category">
+                                    <h3>Primer plato</h3>
+                                    <p class="menu-item-desc">Consomé de arroz y pescado.</p>
+                                </div>
+                                <div class="menu-category" style="margin-top: 1.5rem;">
+                                    <h3>Plato principal</h3>
+                                    <p class="menu-item-desc">Delicias de pollo con papas fritas y croquetas de zanahoria.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-note">
+                        <p><em>* Si tienes alguna intolerancia, alergia o sigues una dieta especial (vegano, vegetariano, celíaco, etc.), por favor indícalo en el formulario de confirmación.</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: CANCIÓN DE INICIO -->
+            <section class="section card-section fade-in">
+                <div class="card-content spotify-card">
+                    <div class="spotify-icon">🎵</div>
+                    <h2 class="section-title">¿Con qué canción empieza la fiesta?</h2>
+                    <p class="welcome-text">
+                        Queremos que la fiesta sea inolvidable y empiece por todo lo alto. Ayúdanos a elegir la canción con la que abriremos la pista de baile rellenando este breve formulario.
+                    </p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSf41D5zAUkstbprFmJQzzR4AuOYCfMs3C4RbQ7WrdNaLyFcpA/viewform?usp=header" target="_blank" class="btn btn-spotify" rel="noopener noreferrer">
+                        <span>Votar Canción</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 5: UBICACIÓN Y MAPA -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title">Ubicación</h2>
+                    <div class="venue-logo-container">
+                        <!-- Logo de Maipez -->
+                        <img src="logo-maipez.png" alt="Logo Hotel Rural LIVVO Maipez" class="venue-logo">
+                    </div>
+                    <p class="venue-details">
+                        Tanto la ceremonia como la celebración tendrán lugar en el <br><strong>Hotel Rural LIVVO Maipez</strong>.
+                    </p>
+                    <p class="address">
+                        📍 Ctra. de La Calzada, 104, 35017 Las Palmas de Gran Canaria
+                    </p>
+                    
+                    <div class="map-container">
+                        <iframe 
+                            src="https://maps.google.com/maps?q=28.05836913674236,-15.473613835663382&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                            width="100%" 
+                            height="350" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <a href="https://www.google.com/maps/search/?api=1&query=28.05836913674236,-15.473613835663382" target="_blank" class="btn btn-map" rel="noopener noreferrer">
+                        <span>Cómo llegar</span>
+                    </a>
+
+                    <div class="kids-menu-wrapper" style="margin-top: 2rem;">
+                        <button class="btn-kids-menu" id="btnTransportInfo">
+                            <span>Información transporte público</span>
+                            <span class="icon-arrow">▼</span>
+                        </button>
+                        <div class="kids-menu-content" id="transportContent">
+                            <div class="kids-menu-inner">
+                                <p class="welcome-text" style="font-size: 1rem; margin-bottom: 1.2rem;">
+                                    Sabemos que vienen desde lugares muy diversos y queremos ponérselo fácil. Si prefieren no coger el coche, pueden llegar a la finca utilizando la <a href="https://guaguasglobal.com/pdflineas/Linea_302.pdf" target="_blank" style="color: var(--color-primary); text-decoration: underline; font-weight: bold;" rel="noopener noreferrer">Línea 302 de Guaguas Global</a>.
+                                </p>
+                                <p class="welcome-text" style="font-size: 1rem;">
+                                    Y para el regreso... ¡la fiesta no tiene prisa! Como tendrán total flexibilidad para abandonar la celebración a su ritmo, les sugerimos pedir un taxi a través de la app <a href="https://pidetaxi.es/" target="_blank" style="color: var(--color-primary); text-decoration: underline; font-weight: bold;" rel="noopener noreferrer">PideTaxi</a> para volver cómodamente (por ejemplo, hasta la Estación de San Telmo).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: CÓDIGO DE VESTIMENTA -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title">Código de vestimenta</h2>
+                    <p class="welcome-text" style="margin-bottom: 0;">
+                        Para el código de vestimenta, tu comodidad es nuestra prioridad. Ven con el estilo que te haga sentir mejor (reservando el blanco para la novia, ¡por supuesto!).
+                    </p>
+                    <div class="menu-note" style="margin-top: 1.5rem; padding-top: 1.5rem;">
+                        <p><em>* Como pequeña recomendación, la finca combina zonas de escaleras, caminos de tierra y césped (tanto natural como artificial). Te sugerimos evitar los tacones excesivamente finos para que puedas moverte con soltura y disfrutar de cada momento junto a nosotros.</em></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 6: LISTA DE BODAS (REGALOS) -->
+            <section class="section card-section fade-in">
+                <div class="card-content">
+                    <h2 class="section-title">El mejor regalo es tu presencia</h2>
+                    <p class="welcome-text">
+                        Pero si deseas ayudarnos en nuestro viaje, puedes hacerlo a través de la siguiente cuenta bancaria:
+                    </p>
+                    
+                    <div class="iban-card">
+                        <p class="iban-title" style="margin-bottom: 0.5rem;">Titular:</p>
+                        <p class="iban-titular" style="margin-bottom: 1.5rem; font-size: 1rem; color: var(--color-text-dark); line-height: 1.4; white-space: nowrap;">
+                            Laura Peñate Alcántara<br>o<br>Alejandro Pérez Sánchez
+                        </p>
+                        <p class="iban-title">Número de Cuenta (IBAN)</p>
+                        <p class="iban-value" id="iban-value">ES73 0182 6130 5902 0162 6115</p>
+                        <button class="btn btn-copy" id="btn-copy-iban">
+                            <span id="copy-text">Copiar IBAN</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 7: RSVP (CONFIRMACIÓN) -->
+            <section class="section card-section fade-in">
+                <div class="card-content rsvp-card">
+                    <h2 class="section-title">Confirmar Asistencia</h2>
+                    <p class="welcome-text">
+                        Para ayudarnos a cuidar cada detalle del banquete, el menú y la organización de los espacios, por favor, confírmanos tu asistencia completando el formulario a continuación.
+                    </p>
+                    <p class="welcome-text" style="font-family: var(--font-serif); color: var(--color-primary); font-weight: bold; font-style: italic; font-size: 1.2rem; margin-top: 1rem; line-height: 1.4;">
+                        Por favor, confirma antes del 8 de septiembre de 2026.<br>¡Cuanto antes nos avises, mucho mejor!
+                    </p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5Ju69RdzbZ7xg1UhukKceO0EqPA0Xv-B7-Z6JG9Dk8FJWWw/viewform?usp=publish-editor" target="_blank" class="btn btn-rsvp" rel="noopener noreferrer">
+                        <span>Confirmar Asistencia</span>
+                    </a>
+                    <p class="rsvp-note" style="font-size: 0.85rem; color: var(--color-text-muted); margin-top: 1.2rem; line-height: 1.4; padding: 0 1rem;">
+                        * Aunque no puedas asistir, por favor entra al formulario y marca la opción "No podré asistir". Nos ayudará muchísimo a organizar todos los detalles.
+                    </p>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 8: CARRUSEL DE FOTOS -->
+            <section class="section carousel-section fade-in">
+                <h2 class="section-title" style="margin-bottom: 1.5rem; text-align: center;">Nuestra Historia</h2>
+                <div class="carousel-container">
+                    <div class="carousel-track">
+                        <!-- Primer set de imágenes -->
+                        <img src="Fotos/Foto_%20(1).webp" alt="Foto 1">
+                        <img src="Fotos/Foto_%20(2).webp" alt="Foto 2">
+                        <img src="Fotos/Foto_%20(3).webp" alt="Foto 3">
+                        <img src="Fotos/Foto_%20(4).webp" alt="Foto 4">
+                        <img src="Fotos/Foto_%20(5).webp" alt="Foto 5">
+                        <img src="Fotos/Foto_%20(6).webp" alt="Foto 6">
+                        <img src="Fotos/Foto_%20(7).webp" alt="Foto 7">
+                        <img src="Fotos/Foto_%20(8).webp" alt="Foto 8">
+                        <img src="Fotos/Foto_%20(9).webp" alt="Foto 9">
+                        <img src="Fotos/Foto_%20(10).webp" alt="Foto 10">
+                        <img src="Fotos/Foto_%20(11).webp" alt="Foto 11">
+                        <!-- Duplicado para efecto infinito suave -->
+                        <img src="Fotos/Foto_%20(1).webp" alt="Foto 1">
+                        <img src="Fotos/Foto_%20(2).webp" alt="Foto 2">
+                        <img src="Fotos/Foto_%20(3).webp" alt="Foto 3">
+                        <img src="Fotos/Foto_%20(4).webp" alt="Foto 4">
+                        <img src="Fotos/Foto_%20(5).webp" alt="Foto 5">
+                        <img src="Fotos/Foto_%20(6).webp" alt="Foto 6">
+                        <img src="Fotos/Foto_%20(7).webp" alt="Foto 7">
+                        <img src="Fotos/Foto_%20(8).webp" alt="Foto 8">
+                        <img src="Fotos/Foto_%20(9).webp" alt="Foto 9">
+                        <img src="Fotos/Foto_%20(10).webp" alt="Foto 10">
+                        <img src="Fotos/Foto_%20(11).webp" alt="Foto 11">
+                    </div>
+                </div>
+            </section>
+
+            <!-- BOTÓN SECUNDARIO RSVP (Aparece con scroll) -->
+            <div class="secondary-rsvp-container" id="floatingRsvp">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSd5Ju69RdzbZ7xg1UhukKceO0EqPA0Xv-B7-Z6JG9Dk8FJWWw/viewform?usp=publish-editor" target="_blank" class="btn btn-rsvp" rel="noopener noreferrer">
+                    <span>Confirmar Asistencia</span>
+                </a>
+            </div>
+
+        </main>
+
+        <!-- FOOTER -->
+        <footer class="main-footer">
+            <p class="footer-names">Laura y Alejandro</p>
+            <p class="footer-date" style="margin-bottom: 0.8rem;">19 . 09 . 2026</p>
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Laura+y+Alejandro&dates=20260919T170000Z/20260920T010000Z&details=%C2%A1Acomp%C3%A1%C3%B1anos+en+nuestro+gran+d%C3%ADa!&location=Hotel+Rural+LIVVO+Maipez,+Gran+Canaria" target="_blank" rel="noopener noreferrer" style="display: inline-block; font-family: var(--font-sans); font-size: 1.05rem; color: var(--color-text-muted); text-decoration: none; border: 1px solid rgba(0,0,0,0.25); padding: 0.5rem 1.2rem; border-radius: 25px; margin-bottom: 1.5rem; transition: all 0.3s ease;">Añadir al calendario</a>
+            <p class="footer-credit">Hecho con ♥ para nuestra boda</p>
+        </footer>
+    </div>
+
+    <!-- Script de lógica -->
+    <script src="app.js"></script>
+</body>
+</html>
